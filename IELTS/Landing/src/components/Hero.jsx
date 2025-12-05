@@ -1,4 +1,11 @@
+import React,{ useState } from "react";
+
+// import Dashboard from "";
+import SignUp from "./Signup";
+
+
 export default function Hero() {
+  const [showDashboard, setDashboard] = useState(false);
   return (
     <section className="flex flex-col md:flex-row items-center justify-between px-8 py-28 bg-gradient-to-r from-blue-100 to-blue-50 ">
       <div className="max-w-lg text-center md:text-left m-20">
@@ -9,9 +16,16 @@ export default function Hero() {
           Join our expert-led courses and boost your band score with AI-driven
           tools.
         </p>
-        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition" onClick={() => setDashboard(true) }>
           Get Started
         </button>
+
+          <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition" onClick={() => setDashboard(false) }>
+          Get Started
+        </button>
+        {/* <div>
+          {showDashboard ? <Dashboard /> : <SignUp/>}
+        </div> */}
       </div>
       <img
         // class="mix-blend-multiply"

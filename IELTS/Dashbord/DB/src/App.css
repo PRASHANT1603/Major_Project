@@ -1,0 +1,37 @@
+Reset some default spacing
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #1e3a8a;
+  color: white;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.navbar li {
+  cursor: pointer;
+}
+
+
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #1e3a8a;
+  color: white;
+}
