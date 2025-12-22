@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Creadit from './pages/Creadit'
 import Results from './pages/Results'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 
 const App = ()=> {
@@ -17,6 +18,8 @@ const App = ()=> {
         <Route path='/results' element={<Results/>}/>
         <Route path='/buy' element={<Creadit/>}/>
       </Routes>
+      <Footer/>
+
       
 
     </div>
