@@ -4,15 +4,22 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js",
+    "server": "node app.js"
   },
   "dependencies": {
     "axios": "^1.13.2",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "form-data": "^4.0.5",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.0.2",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "razorpay": "^2.9.6"
   }
 }
