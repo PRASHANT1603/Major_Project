@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { assets } from "../assets/assets";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
+import { AppContext } from "../context/AppContext";
 
 const Results = () => {
   const [image, setImage] = useState(assets.sample_img_1);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
+  const { generateImage } = useContext(AppContext);
 
-  const onSubmithandler = async (e) => {};
+  const onSubmithandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (input) {
+      const image = await generateImage(input);
+      if (image) {
+        setIsImageLoaded(true);
+        setImage(image);
+        
+      }
+    }
+    setLoading(false);
+  };
 
   return (
     <motion.form
-    initial={{opacity:0.2, y:100}}
-    transition={{duration:1}}
-    whileInView={{opacity:1, y:0}}
-    viewport={{once:true}}
+      initial={{ opacity: 0.2, y: 100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       onSubmit={onSubmithandler}
       className=" flex flex-col min-h-[90vh] justify-center items-center"
     >
@@ -31,7 +45,7 @@ const Results = () => {
 
         <p className={!loading ? "hidden" : ""}>Loding...</p>
       </div>
-      
+
       {!isImageLoaded && (
         <div className="flex w-full max-w-xl bg-netural-500 text-white text-sm p-0.5 mt-10 rounded-full">
           <input

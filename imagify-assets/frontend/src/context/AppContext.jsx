@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect,  } from "react";
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -11,6 +13,7 @@ const AppContextProvider = (props) => {
   const [credits, setCredits] = useState(false);
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const nevigate = useNavigate();
 
   const loadCreaditsData = async () => {
     try{
@@ -29,6 +32,32 @@ const AppContextProvider = (props) => {
 
     }
   };
+  const generateImage = async (prompt) => {
+    try{
+      const {data} = await axios.post(backendUrl + "/api/images/generate-image", { prompt }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if(data.success){
+        toast.success("Image generated successfully");
+        loadCreaditsData();
+        return data.resultImage;
+      }else{
+        toast.error("Failed to generate image" + data.message);
+        if(data.creditBalance === 0){
+          nevigate("/Buy");
+        }
+      }
+
+    }catch (error) {
+      toast.error("Error generating image");
+      console.error("Error generating image:", error);
+    }
+  };
+
+
 
     const logout = () => {
       localStorage.removeItem("token");
@@ -58,6 +87,7 @@ const AppContextProvider = (props) => {
     setCredits,
     loadCreaditsData,
     logout,
+    generateImage,
   };
 
   

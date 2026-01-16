@@ -37,7 +37,7 @@ const onSubmit = async (e) => {
       const { data } = await axios.post(
         backendUrl + "/api/users/register",
         {
-          name: username,
+          username,
           email,
           password,
         }
